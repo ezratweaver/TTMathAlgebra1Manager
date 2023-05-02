@@ -10,5 +10,5 @@ lesson_data = grab_lesson_data(
 progress, progress_percentage, grade_percentage = sift_lesson_data(
     lesson_data, TOTAL_LESSONS)
 
-print(progress, progress_percentage)
-print(grade_percentage)
+print(f"Lessons: {progress} Complete: {progress_percentage}")
+print(f"Total Grade: {grade_percentage}")
