@@ -1,6 +1,5 @@
 from database_manger import grab_lesson_data, sift_lesson_data
 
-
 DATABASE_NAME = "algebra1dat"
 PUBLIC_FOLDER = "TT Algebra 1"
 TOTAL_LESSONS = 142
