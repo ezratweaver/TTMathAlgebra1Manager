@@ -53,7 +53,6 @@ def sift_lesson_data(input_data, max_lessons):
                             the student, found by dividing the correct score with the
                             incorrect and correct score combined all added into one
                             value, then divided by the complete amount of lessons
-
     """
     total_lessons = 0
     total_percentage = 0
