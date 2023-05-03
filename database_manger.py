@@ -18,10 +18,8 @@ def sift_lesson_data(input_db, max_lessons):
     total_percentage = 0
     for lesson in input_db:
         split_lesson_data = [int(x) for x in lesson[1].split(" | ")[10:]]
-
         problem_correct = 0
         problem_wrong = 0
-
         for number in split_lesson_data:
             if number == 1:
                 problem_correct += 1
@@ -33,7 +31,8 @@ def sift_lesson_data(input_db, max_lessons):
                             problem_correct + problem_wrong)
         except ZeroDivisionError:
             grade_percentage = 0
-        total_lessons += 1
+        if problem_correct + problem_wrong > 0:
+            total_lessons += 1
         total_percentage = total_percentage + grade_percentage
 
     progress = f"{total_lessons}/{max_lessons}"
