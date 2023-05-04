@@ -20,4 +20,7 @@ class Assets:
     image_grade = PhotoImage(file='assets/grade.png')
     image_progress = PhotoImage(file='assets/progress.png')
     image_volume = PhotoImage(file='assets/volume.png')
-
+    image_progress_title = PhotoImage(file="assets/progress_title.png")
+    image_progress_bar_frame = PhotoImage(file="assets/progress_bar_frame.png")
+    image_stat_frame = PhotoImage(file="assets/stat_frame.png")
+    image_menu = PhotoImage(file="assets/menu.png")
