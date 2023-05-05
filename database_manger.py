@@ -42,7 +42,7 @@ def sift_lesson_data(input_data, max_lessons):
         max_lessons (int): A constant that contains the curriculums max amount of
                             lessons for proper tracking of progress
     Returns:
-        Three variables: progress, progress_percentage, grade_percentage 
+        Three variables: progress, progress_percentage, grade_percentage, grade 
         
         progress (string): A string showing the completed lessons, and the amount max
                             amount of lessons in the cirriculum EX. "23/142"
@@ -53,7 +53,15 @@ def sift_lesson_data(input_data, max_lessons):
                             the student, found by dividing the correct score with the
                             incorrect and correct score combined all added into one
                             value, then divided by the complete amount of lessons
+        grade (string): A string that reflects the academic grade equivalent of the
+                        grade percentage
     """
+    grade_to_percentage = {
+    "A+": 97, "A": 93, "A-": 90,
+    "B+": 87, "B": 83, "B-": 80,
+    "C+": 77, "C": 73, "C-": 70,
+    "D+": 67, "D": 63, "D-": 60,
+    "F": 0,}
     total_lessons = 0
     total_percentage = 0
     for lesson in input_data:
@@ -75,19 +83,13 @@ def sift_lesson_data(input_data, max_lessons):
             total_lessons += 1
         total_percentage = total_percentage + grade_percentage
 
+    for grade in sorted(grade_to_percentage.keys()):
+        if get_average(total_percentage, total_lessons) >= grade_to_percentage[grade]:
+            grade = grade
+            break
+
     progress = f"{total_lessons}/{max_lessons}"
     progress_percentage = f"{get_average(total_lessons, max_lessons)}%"
     grade_percentage = f"{get_average(total_percentage, total_lessons)}%"
-    return progress, progress_percentage, grade_percentage
+    return progress, progress_percentage, grade_percentage, grade
 
-DATABASE_NAME = "algebra1dat"
-PUBLIC_FOLDER = "TT Algebra 1"
-TOTAL_LESSONS = 142
-
-lesson_data = grab_lesson_data(
-    PUBLIC_FOLDER, DATABASE_NAME)
-progress, progress_percentage, grade_percentage = sift_lesson_data(
-    lesson_data, TOTAL_LESSONS)
-
-print(f"Lessons: {progress} Complete: {progress_percentage}")
-print(f"Total Grade: {grade_percentage}")
