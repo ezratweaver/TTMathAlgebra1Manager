@@ -2,7 +2,7 @@ from sqlite3 import connect
 from os import path, environ, chdir
 from get_average import get_average
 
-def grab_lesson_data(public_folder, database):
+def grab_math_data(public_folder, database, test=False):
     """
     Goes into the Teaching Textbooks local database and collects data from the
     LNum (Lesson Number) and LScore (Lesson Score) columns and returns a large list with
@@ -23,13 +23,18 @@ def grab_lesson_data(public_folder, database):
     chdir(tt_math_dir)
     database_connection = connect(database)
     cursor = database_connection.cursor()
-    cursor.execute('SELECT LNum, LScore FROM userLessonGrade_2 ORDER BY LNum ASC')
-    lesson_and_score = cursor.fetchall()
+
+    sql_execute = "SELECT LNum, LScore FROM userLessonGrade_2 ORDER BY LNum ASC"
+    if test:
+        sql_execute = "SELECT QNum, QScore FROM userQuizGrade_2 ORDER BY QNum ASC"
+
+    cursor.execute(sql_execute)
+    number_and_score = cursor.fetchall()
     cursor.close()
     database_connection.close()
-    return lesson_and_score
+    return number_and_score
 
-def sift_lesson_data(input_data, max_lessons):
+def sift_math_data(input_data, max_lessons):
     """
     Sifts through a predetermined style of data and comes up with statistical data
     for a students math performance
