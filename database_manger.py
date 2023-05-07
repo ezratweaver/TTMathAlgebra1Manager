@@ -23,11 +23,9 @@ def grab_math_data(public_folder, database, test=False):
     chdir(tt_math_dir)
     database_connection = connect(database)
     cursor = database_connection.cursor()
-
     sql_execute = "SELECT LNum, LScore FROM userLessonGrade_2 ORDER BY LNum ASC"
     if test:
         sql_execute = "SELECT QNum, QScore FROM userQuizGrade_2 ORDER BY QNum ASC"
-
     cursor.execute(sql_execute)
     number_and_score = cursor.fetchall()
     cursor.close()
