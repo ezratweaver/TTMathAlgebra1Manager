@@ -16,14 +16,9 @@ progress, progress_percentage, grade_percentage, grade = sift_math_data(
 lesson_progress_bar = create_progress_bar(progress_percentage)
 grade_progress_bar = create_progress_bar(grade_percentage)
 
-print(f"Lessons: {progress}")
+print(f"Lessons: {progress}               Grade: {grade}")
 
-print("----------------------")
-print(lesson_progress_bar, progress_percentage)
-print("----------------------")
+print("----------------------         ----------------------")
+print(f"{lesson_progress_bar} {progress_percentage}     {grade_progress_bar} {grade_percentage}")
+print("----------------------         ----------------------")
 
-
-print(f"\nGrade: {grade}")
-print("----------------------")
-print(grade_progress_bar, grade_percentage)
-print("----------------------")
