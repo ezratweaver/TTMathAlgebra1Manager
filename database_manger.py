@@ -94,5 +94,5 @@ def sift_math_data(input_data, max_lessons):
     progress = f"{total_lessons}/{max_lessons}"
     progress_percentage = f"{get_average(total_lessons, max_lessons)}%"
     grade_percentage = f"{get_average(total_percentage, total_lessons)}%"
-    return progress, progress_percentage, grade_percentage, grade
+    return progress, progress_percentage, grade, grade_percentage
 
