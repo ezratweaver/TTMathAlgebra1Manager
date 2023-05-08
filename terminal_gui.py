@@ -8,13 +8,16 @@ def create_progress_bar(progress):
     string = "|" + string + "|"
     return string
 
-def print_gui(type, lesson_numbers, lesson_percentage,
+def print_gui(type, quiz_numbers, quiz_percentage,
               grade_letter, grade_percentage):
-    
-    lesson_progress_bar = create_progress_bar(lesson_percentage)
+    quiz_progress_bar = create_progress_bar(quiz_percentage)
     grade_progress_bar = create_progress_bar(grade_percentage)
 
-    print(f"{type}: {lesson_numbers}               Grade: {grade_letter}")
+    if quiz_percentage == "100%":
+        ws = '    '
+    else:
+        ws = '     '
+    print(f"{type}: {quiz_numbers}                Grade: {grade_letter}")
     print("----------------------         ----------------------")
-    print(f"{lesson_progress_bar} {lesson_percentage}     {grade_progress_bar} {grade_percentage}")
+    print(f"{quiz_progress_bar} {quiz_percentage}{ws}{grade_progress_bar} {grade_percentage}")
     print("----------------------         ----------------------")
