@@ -16,7 +16,7 @@ def print_gui(type, quiz_numbers, quiz_percentage,
     ws = ''
     ws2 = '     '
 
-    if type == "Test":
+    if type == "Quiz":
         ws = '    '
     if quiz_percentage == "100%":
         ws2 = '    '
