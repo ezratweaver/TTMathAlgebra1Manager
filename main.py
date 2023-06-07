@@ -8,15 +8,15 @@ TOTAL_LESSONS = 142
 TOTAL_TESTS = 19
 
 lesson_data = grab_math_data(PUBLIC_FOLDER, DATABASE_NAME)
-test_data = grab_math_data(PUBLIC_FOLDER, DATABASE_NAME, quiz=True)
+quiz_data = grab_math_data(PUBLIC_FOLDER, DATABASE_NAME, quiz=True)
 
 lesson_variables = sift_math_data(lesson_data, TOTAL_LESSONS)
-test_variables = sift_math_data(test_data, TOTAL_TESTS)
+quiz_variables = sift_math_data(quiz_data, TOTAL_TESTS)
 
 def main_terminal_gui():
     system("cls")
     print("Welcome to Teaching Textbooks Algebra 1 Manager\n")
-    print("[1] Lessons\n[2] Tests\n")
+    print("[1] Lessons\n[2] Quizzes\n")
     try:
         user_view_choice = input("What would you like to view? ")
     except KeyboardInterrupt:
@@ -32,7 +32,7 @@ def main_terminal_gui():
             input('')
             main_terminal_gui()
         elif user_view_choice == "2":
-            print_gui("Test", *test_variables)
+            print_gui("Quiz", *quiz_variables)
             input()
             main_terminal_gui()
         else:
