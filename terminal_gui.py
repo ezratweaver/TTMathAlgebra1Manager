@@ -13,16 +13,15 @@ def print_gui(type, quiz_numbers, quiz_percentage,
     quiz_progress_bar = create_progress_bar(quiz_percentage)
     grade_progress_bar = create_progress_bar(grade_percentage)
 
-    ws = '     '
-    if quiz_percentage == "100%":
-        ws = '    '
+    ws = ''
+    ws2 = '     '
 
-        
-    ws2 = ''
     if type == "Test":
+        ws = '    '
+    if quiz_percentage == "100%":
         ws2 = '    '
 
-    print(f"{type}: {quiz_numbers}                {ws2}Grade: {grade_letter}")
+    print(f"{type}: {quiz_numbers}                {ws}Grade: {grade_letter}")
     print("----------------------         ----------------------")
-    print(f"{quiz_progress_bar} {quiz_percentage}{ws}{grade_progress_bar} {grade_percentage}")
+    print(f"{quiz_progress_bar} {quiz_percentage}{ws2}{grade_progress_bar} {grade_percentage}")
     print("----------------------         ----------------------")
