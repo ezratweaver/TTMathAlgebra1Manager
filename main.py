@@ -8,7 +8,7 @@ TOTAL_LESSONS = 142
 TOTAL_TESTS = 19
 
 lesson_data = grab_math_data(PUBLIC_FOLDER, DATABASE_NAME)
-test_data = grab_math_data(PUBLIC_FOLDER, DATABASE_NAME, test=True)
+test_data = grab_math_data(PUBLIC_FOLDER, DATABASE_NAME, quiz=True)
 
 lesson_variables = sift_math_data(lesson_data, TOTAL_LESSONS)
 test_variables = sift_math_data(test_data, TOTAL_TESTS)
