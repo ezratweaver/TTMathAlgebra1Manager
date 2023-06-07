@@ -2,35 +2,33 @@ from sqlite3 import connect
 from os import path, environ, chdir
 from get_average import get_average
 
-def grab_math_data(public_folder, database, test=False):
+def grab_math_data(public_folder, database, quiz=False):
     """
-    Goes into the Teaching Textbooks local database and collects data from the
-    LNum (Lesson Number) and LScore (Lesson Score) columns and returns a large list with
-    tuples containing the data
+    Retrieve lesson or quiz data from a SQLite database.
 
     Args:
-        public_folder (string): The name of the folder of the TT Math database
-                                this is a agrument to possibly support other legacy
-                                TT math versions
-        database (string): The name of the database file the program will dig through
-                            agrument for the same reason as previous
+        public_folder (str): The name of the public folder.
+        database (str): The name of the SQLite database file.
+        test (bool, optional): If True, retrieve quiz data; 
+            otherwise, retrieve lesson data. Defaults to False.
+
     Returns:
-        A large list of tuples, the tuples contain the lesson number and lesson score
-        stored as digits such as '1 | 1 | 0 | 1' to represent correct and wrong scores
-        1's represent correct and 0's represent incorrect
+        list: A list of tuples containing the lesson or quiz numbers
+            and corresponding scores.
+
     """
     tt_math_dir = path.join(environ["PUBLIC"], "Documents", public_folder)
     chdir(tt_math_dir)
     database_connection = connect(database)
     cursor = database_connection.cursor()
     sql_execute = "SELECT LNum, LScore FROM userLessonGrade_2 ORDER BY LNum ASC"
-    if test:
+    if quiz:
         sql_execute = "SELECT QNum, QScore FROM userQuizGrade_2 ORDER BY QNum ASC"
     cursor.execute(sql_execute)
-    number_and_score = cursor.fetchall()
+    lessson_and_score = cursor.fetchall()
     cursor.close()
     database_connection.close()
-    return number_and_score
+    return lessson_and_score
 
 def sift_math_data(input_data, max_lessons):
     """
